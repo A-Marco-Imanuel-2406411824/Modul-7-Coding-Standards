@@ -16,3 +16,8 @@
 ![img_3.png](profiling-img/highest-gpa/img_3.png)
 (CLI)
 ![cli.png](profiling-img/highest-gpa/cli.png)
+
+## Method optimizations for each endpoint
+(/all-student) getAllStudentsWithCourses() 970 ms → 374 ms (>50%)
+(/highest-gpa) findStudentWithHighestGpa()
+(/all-student-name) joinStudentNames()
