@@ -25,30 +25,24 @@ public class StudentService {
 
     public List<StudentCourse> getAllStudentsWithCourses() {
         // Optimized: Single database query instead of N+1 queries
-        // Returns all StudentCourse mappings with their associated Student and Course data
+        // Returns all StudentCourse mappings with their associated Student and Course data.
         return studentCourseRepository.findAll();
     }
 
     public Optional<Student> findStudentWithHighestGpa() {
-        List<Student> students = studentRepository.findAll();
-        Student highestGpaStudent = null;
-        double highestGpa = 0.0;
-        for (Student student : students) {
-            if (student.getGpa() > highestGpa) {
-                highestGpa = student.getGpa();
-                highestGpaStudent = student;
-            }
-        }
-        return Optional.ofNullable(highestGpaStudent);
+        // Optimized: Use database-level query instead of fetching all students to Java
+        // Database query with ORDER BY gpa DESC and LIMIT 1 is much faster than loading all students
+        return studentRepository.findStudentWithHighestGpa();
     }
 
     public String joinStudentNames() {
+        // Optimized: Use String.join() and streams for efficient string building
+        // Replaces inefficient string concatenation (O(n²)) with O(n) complexity
         List<Student> students = studentRepository.findAll();
-        String result = "";
-        for (Student student : students) {
-            result += student.getName() + ", ";
-        }
-        return result.substring(0, result.length() - 2);
+        return String.join(", ",
+            students.stream()
+                .map(Student::getName)
+                .toList());
     }
 }
 
