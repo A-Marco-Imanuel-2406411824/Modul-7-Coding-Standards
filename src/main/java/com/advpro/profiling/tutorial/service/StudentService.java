@@ -43,12 +43,13 @@ public class StudentService {
     }
 
     public String joinStudentNames() {
+        // Optimized: Use String.join() and streams for efficient string building
+        // Replaces inefficient string concatenation (O(n²)) with O(n) complexity
         List<Student> students = studentRepository.findAll();
-        String result = "";
-        for (Student student : students) {
-            result += student.getName() + ", ";
-        }
-        return result.substring(0, result.length() - 2);
+        return String.join(", ",
+            students.stream()
+                .map(Student::getName)
+                .toList());
     }
 }
 
