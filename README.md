@@ -19,5 +19,5 @@
 
 ## Method optimizations for each endpoint
 (/all-student) getAllStudentsWithCourses() 970 ms → 374 ms (>50%)
-(/highest-gpa) findStudentWithHighestGpa() 126 ms → 96 ms (>20%)
-(/all-student-name) joinStudentNames()
+(/highest-gpa) findStudentWithHighestGpa() 120 ms →  70 ms (>40%)
+(/all-student-name) joinStudentNames() 126 ms → 96 ms (>20%)

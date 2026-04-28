@@ -30,16 +30,9 @@ public class StudentService {
     }
 
     public Optional<Student> findStudentWithHighestGpa() {
-        List<Student> students = studentRepository.findAll();
-        Student highestGpaStudent = null;
-        double highestGpa = 0.0;
-        for (Student student : students) {
-            if (student.getGpa() > highestGpa) {
-                highestGpa = student.getGpa();
-                highestGpaStudent = student;
-            }
-        }
-        return Optional.ofNullable(highestGpaStudent);
+        // Optimized: Use database-level query instead of fetching all students to Java
+        // Database query with ORDER BY gpa DESC and LIMIT 1 is much faster than loading all students
+        return studentRepository.findStudentWithHighestGpa();
     }
 
     public String joinStudentNames() {
