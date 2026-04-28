@@ -25,7 +25,7 @@ public class StudentService {
 
     public List<StudentCourse> getAllStudentsWithCourses() {
         // Optimized: Single database query instead of N+1 queries
-        // Returns all StudentCourse mappings with their associated Student and Course data
+        // Returns all StudentCourse mappings with their associated Student and Course data.
         return studentCourseRepository.findAll();
     }
 
